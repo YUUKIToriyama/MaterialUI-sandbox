@@ -1,7 +1,7 @@
 /* main.js */
 import React from "react";
 import ReactDOM from "react-dom";
-//import "./style.css";
+import "./style.css";
 
 // Material-UI
 import Button from "@material-ui/core/Button";
@@ -140,7 +140,10 @@ function getStepContent(step) {
 			);
 		case 2:
 			return (
-				<p>処理を行なっています。しばらくお待ち下さい。</p>
+				<div>
+					<p>処理を行なっています。しばらくお待ち下さい。</p>
+					<MyMap />
+				</div>
 			);
 		default:
 			return 'Unknown step';
@@ -207,5 +210,30 @@ export default function VerticalLinearStepper() {
 	);
 }
 
-
 ReactDOM.render(<App />, document.getElementById("app"));
+
+
+// react-leaflet
+import Leaflet from "leaflet";
+//import "../node_modules/leaflet/dist/leaflet.css";
+import {MapContainer, TileLayer} from "react-leaflet";
+
+const MapComponents = () => {
+	const osmAttribution = '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+	const osmDefaultUrl = "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png";
+	const position = [34.9, 136.5];
+
+	return (
+		<MapContainer center={position} zoom={10} style={{height: "500px"}}>
+			<TileLayer attribution={osmAttribution} url={osmDefaultUrl}/>
+		</MapContainer>
+	);
+}
+
+const MyMap = () => {
+	return (
+		<MapComponents/>
+	);
+}
+
+//ReactDOM.render(<MyMap />, document.getElementById("map"));

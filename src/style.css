@@ -1,2 +1,8 @@
 /* style.css */
 
+@import "../node_modules/leaflet/dist/leaflet.css";
+
+#map {
+	width: 500px;
+	height: 300px;
+}
